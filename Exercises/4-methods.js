@@ -15,13 +15,18 @@ const obj = {
   },
 };
 
-// will return: [
-//   ['m1', 1],
-//   ['m2', 2],
-//   ['m3', 3]
-// ]
-
 const methods = (iface) => {
+  const names = [];
+  for (const name in iface) {
+    const fn = iface[name];
+    if (typeof fn === 'function') {
+      names.push([name, fn.length]);          // Сразу можно запушить массив в массив
+    }
+  }
+  return names;
+};
+
+/* const methods = (iface) => {
   const mainArray = [];
   Object.keys(iface).forEach((key) => {
     const array = [];
@@ -31,6 +36,6 @@ const methods = (iface) => {
   return mainArray;
 };
 
-console.log(methods(obj));
+console.log(methods(obj)); */
 
 module.exports = { methods };
