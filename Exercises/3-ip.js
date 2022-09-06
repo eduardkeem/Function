@@ -27,11 +27,50 @@
 
 
 const ipToInt = (ip = '127.0.0.1') => {
+  const fn = (res, item) => (res << 8) + parseInt(item);
+  return ip.split('.').reduce(fn, 0);
+};
+
+console.log(ipToInt('10.0.0.1'));
+
+
+// const iv = '10.0.0.1';
+
+// console.log(iv.split('.'));
+
+
+/* const ipToInt = (ip = '127.0.0.1') => {
+
   // Parse ip address as string, for example '10.0.0.1'
   // to ['10', '0', '0', '1'] to [10, 0, 0, 1]
+  const arr = ip.split('.').map(Number);
+
   // and convert to Number value 167772161 with bitwise shift
+  let bi = arr[0];
+
+  for (let i = 0; i < 3; i++) {
+    bi <<= 8;
+  }
+
+  let mi = arr[1];
+
+  for (let i = 0; i < 2; i++) {
+    mi <<= 8;
+  }
+
+  let vi = arr[2];
+
+  for (let i = 0; i < 1; i++) {
+    vi <<= 8;
+  }
+
   // (10 << 8 << 8 << 8) + (0 << 8 << 8) + (0 << 8) + 1 === 167772161
-  // Use Array.prototype.reduce of for loop
+  const sum = bi + mi + vi + 1;
+
+  return sum;
+
 };
+
+console.log(ipToInt()); */
 
 module.exports = { ipToInt };
