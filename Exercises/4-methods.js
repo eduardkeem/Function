@@ -4,35 +4,33 @@
 - Проитерируйте все ключи объекта `iface`
 - Возьмите ключи функционального типа
 - Для каждой функции возьмите количество аргументов
-- Сохраните результаты в двумерный массив
+- Сохраните результаты в двумерный массив*/
 
-Например, из:
-```js
-{
-  m1: x => [x],
-  m2: function (x, y) {
-    return [x, y];
-  },
+
+const obj = {
+  m1: (x) => [x],
+  m2: (x, y) => [x, y],
   m3(x, y, z) {
-    return [x, y, z]; */
+    return [x, y, z];
+  },
+};
 
+// will return: [
+//   ['m1', 1],
+//   ['m2', 2],
+//   ['m3', 3]
+// ]
 
-// const methods = iface => {
-//   // Introspect all properties of iface object and
-//   // extract function names and number of arguments
-//   // For example: {
-//   //   m1: x => [x],
-//   //   m2: function (x, y) {
-//   //     return [x, y];
-//   //   },
-//   //   m3(x, y, z) {
-//   //     return [x, y, z];
-//   //   }
-//   // will return: [
-//   //   ['m1', 1],
-//   //   ['m2', 2],
-//   //   ['m3', 3]
-//   // ]
-// };
+const methods = (iface) => {
+  const mainArray = [];
+  Object.keys(iface).forEach((key) => {
+    const array = [];
+    array.push(key, iface[key].length);
+    mainArray.push(array);
+  });
+  return mainArray;
+};
 
-// module.exports = { methods };
+console.log(methods(obj));
+
+module.exports = { methods };
